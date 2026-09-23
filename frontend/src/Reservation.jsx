@@ -14,20 +14,21 @@ export default function Reservation() {
   const [status, setStatus] = useState('')
 
   const handleSubmit = (e) => {
-    e.preventDefault()
-    setStatus('A processar reserva...')
+      e.preventDefault()
+      setStatus('A processar reserva...')
 
-    fetch('http://127.0.0.1:8000/api/reservations/', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(formData)
-    })
-      .then(res => {
-        if (res.ok) setStatus('Reserva confirmada com sucesso!')
-        else setStatus('Erro ao reservar. Verifique os dados.')
+      // Aqui está a magia: apontar para o servidor real!
+      fetch('https://mirabeachclub.pythonanywhere.com/api/reservations/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
       })
-      .catch(() => setStatus('Erro de conexão com o servidor.'))
-  }
+        .then(res => {
+          if (res.ok) setStatus('Reserva confirmada com sucesso!')
+          else setStatus('Erro ao reservar. Verifique os dados.')
+        })
+        .catch(() => setStatus('Erro de conexão com o servidor.'))
+    }
 
   return (
     <div style={{ position: 'relative', width: '100%', minHeight: '100vh', paddingTop: '60px' }}>
