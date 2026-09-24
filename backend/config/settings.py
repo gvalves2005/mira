@@ -140,4 +140,4 @@ CORS_ALLOWED_ORIGINS = [
 ]
 
 CORS_ALLOW_ALL_ORIGINS = True
-CSRF_TRUSTED_ORIGINS = ['https://mira-beach-club.vercel.app']
+CSRF_TRUSTED_ORIGINS = ['https://mira-five-cyan.vercel.app/']
